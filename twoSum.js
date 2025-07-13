@@ -63,3 +63,16 @@ var twoSum = function(nums, target){
 }
 
 
+// implelmenting the two sum problem using a hash map for better performance
+var twoSumHashMap = function (nums, target){
+ 
+ const map = new Map(); 
+ for(let n = 0; n< nums.length ; n++){
+    complement = target - nums[n];
+    if(map.has(complement)){
+        return [map.get(complement), n]
+    }
+    map.set(nums[n], n);
+ } 
+}
+
