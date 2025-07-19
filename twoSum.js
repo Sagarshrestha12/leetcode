@@ -225,3 +225,55 @@ function greetWithBind(greeting) {
 }
 const boundGreet = greetWithBind.bind(person);
 boundGreet("Hey"); // Hey, Sagar  later on you can this function. 
+
+//deepcopy vs shallow copy
+// Shallow copy creates a new object with the same properties as the original object
+// but does not create copies of nested objects. Changes to nested objects in the original will affect
+// the shallow copy and vice versa.
+// Deep copy creates a new object with all properties and nested objects copied recursively.
+// Changes to nested objects in the original will not affect the deep copy and vice versa.
+// Shallow copy example
+const original = { a: 1, b: { c: 2 } };
+const shallowCopy = { ...original }; // or Object.assign({}, original)
+shallowCopy.b.c = 3; // This will affect the original object
+console.log(original.b.c); // 3     
+
+// Deep copy example
+const deepCopy = structuredClone(original);
+deepCopy.b.c = 4; // This will not affect the original object
+console.log(original.b.c); // 3   
+
+// map, filter, and reduce
+// map: creates a new array with the results of calling a function on every element in the
+// original array
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6, 8] 
+
+// filter: creates a new array with all elements that pass the test implemented by the provided function
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log(evenNumbers); // [2, 4] 
+
+
+// understanding about event loop
+// https://medium.com/@ignatovich.dm/the-javascript-event-loop-explained-with-examples-d8f7ddf0861d
+//Components in event loop
+// // Call Stack: where functions are executed
+// The call stack is a data structure used by the JavaScript engine to keep track of function calls.
+// When a function is called, it's pushed onto the stack.
+// When the function finishes, it's popped off the stack.
+// ✅ JavaScript is single-threaded, which means it can only run one function at a time, 
+// and the call stack keeps track of where it is in that one-at-a-time execution.
+
+
+// Web APIs: browser APIs that handle asynchronous operations (e.g., setTimeout, DOM events)
+// Task Queue:  Stores tasks waiting to be executed after the call stack is empty.  These tasks are queued by setTimeout, setInterval, or other APIs.
+// Microtask Queue: A higher-priority queue for promises and MutationObserver callbacks. 
+// Microtasks are executed before tasks in the task queue.
+// Event Loop: Continuously checks if the call stack is empty and pushes tasks from 
+// the microtask queue or task queue to the call stack for execution.
+
+// Types of Tasks in JavaScript
+// Synchronous Tasks: Executed immediately on the call stack (e.g., function calls, variable declarations).
+// Microtasks: High-priority asynchronous tasks, such as Promise callbacks and queueMicrotask.
+// Macrotasks: Lower-priority asynchronous tasks, like setTimeout, setInterval, and DOM events.
