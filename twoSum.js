@@ -277,3 +277,37 @@ console.log(evenNumbers); // [2, 4]
 // Synchronous Tasks: Executed immediately on the call stack (e.g., function calls, variable declarations).
 // Microtasks: High-priority asynchronous tasks, such as Promise callbacks and queueMicrotask.
 // Macrotasks: Lower-priority asynchronous tasks, like setTimeout, setInterval, and DOM events.
+
+
+// const fetchPromise = fetch(
+//   "bad-scheme://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json",
+// );
+
+// fetchPromise
+//   .then((response) => {
+//     if (!response.ok) {
+//       throw new Error(`HTTP error: ${response.status}`);
+//     }
+//     return response.json();
+//   })
+//   .then((data) => {
+//     console.log(data[0].name);
+//   })
+//   .catch((error) => {
+//     console.error(`Could not get products: ${error}`);
+//   });
+
+fetchPromise = fetch(
+  "https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json",
+);
+
+fetchPromise
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data[0].name);
+  });
